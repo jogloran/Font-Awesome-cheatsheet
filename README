@@ -1,1 +1,2 @@
 This is a quick hack to create a cheatsheet of Font Awesome icons. It just greps the LESS file for .icon-* and displays a simple list.
+To generate the cheatsheet, just run generate.rb.
