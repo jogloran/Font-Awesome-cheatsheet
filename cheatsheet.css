@@ -1,0 +1,48 @@
+body {
+	width: 80%;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+ul li {
+	float: left;
+	list-style-type: none;
+	width: 4em;
+	height: 4em;
+	z-index: -10;
+}
+
+ul li:hover {
+	width: 13em;
+	height: 6em;
+	padding-left: 1em;
+	padding-right: 1em;
+	margin: -1em;
+	margin-right: -10em;
+	z-index: -100;
+	line-height: 6em;
+	background-color: #77f;
+}
+
+span {
+	font-family: sans-serif;
+	font-size: 1em;
+	font-weight: bold;
+	display:none;
+}
+
+ul li:hover span {
+	display: inline;
+	float: right;
+	color: #000;
+}
+
+ul li i:before {
+	color: #666;
+	font-size: 2em;
+}
+
+ul li:hover i:before {
+	color: #000;
+	font-size: 5em;
+}
