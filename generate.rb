@@ -4,6 +4,7 @@ lines = File.readlines 'Font-Awesome/less/font-awesome.less'
 icons = lines.select { |line| line.start_with? ".icon-" }
 icons = icons.map { |line| line.split(':')[0].sub ".", "" }
 icons = icons.select { |icon| icon != "icon-large" }
+icons = icons.reject { |icon| icon =~ /spin|white|2x|3x|4x|muted|border/ } 
 
 File.open("cheatsheet.html", "w") { |out|
 	out.puts <<EOS
@@ -21,7 +22,7 @@ File.open("cheatsheet.html", "w") { |out|
 		<ul>
 EOS
 	for icon in icons
-		out.puts "\t\t\t<li><i class=\"#{icon}\"></i><span>#{icon.sub "icon-", ""}</span></li>"
+		out.puts "\t\t\t<li><div><i class=\"#{icon}\"></i></div><div>#{icon.sub "icon-", ""}</div></li>"
 	end
 	out.puts <<EOS
 		</ul>
