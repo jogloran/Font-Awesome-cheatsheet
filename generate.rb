@@ -1,10 +1,12 @@
 #!/usr/bin/ruby
 
-lines = File.readlines 'Font-Awesome/less/font-awesome.less'
-icons = lines.select { |line| line.start_with? ".icon-" }
-icons = icons.map { |line| line.split(':')[0].sub ".", "" }
-icons = icons.select { |icon| icon != "icon-large" }
-icons = icons.reject { |icon| icon =~ /spin|white|2x|3x|4x|muted|border/ } 
+lines = File.readlines 'Font-Awesome/less/icons.less'
+icons = lines.select { |line| line.start_with? ".@{fa-css-prefix}" }
+icons = icons.map {|icon|
+    icon =~ /\.@\{fa-css-prefix\}-([^:]+):before/
+    $1
+}
+puts icons
 
 File.open("cheatsheet.html", "w") { |out|
 	out.puts <<EOS
@@ -22,7 +24,7 @@ File.open("cheatsheet.html", "w") { |out|
 		<ul>
 EOS
 	for icon in icons
-		out.puts "\t\t\t<li><div><i class=\"#{icon}\"></i></div><div>#{icon.sub "icon-", ""}</div></li>"
+		out.puts "\t\t\t<li><div><i class=\"fa fa-#{icon}\"></i></div><div>#{icon.sub "icon-", ""}</div></li>"
 	end
 	out.puts <<EOS
 		</ul>
